@@ -1,0 +1,30 @@
+int Funct(arg1, arg2, ..){
+	/**/
+
+	int var1 = Exp;
+	..
+
+}
+
+
+1. Integer constants 0 through 255(0xFF).
+2. unary: ! ~
+3. binary: & ^ | + << >>
+
+
+1. uses 2s complement, 32-bit representation of integers.
+2. performs right shifts arithmetically.
+3. has unpredictable behavior when shifting if the shiftamount is less than 0 or greater than 31.
+
+-------------------------------
+
+1. looping and conditional control.
+2. both ints and unsigneds.
+3. arbitrary integer and unsigned constants. 
+3. can use any arithmetic, logical, or comparison operations on int or unsighed data.
+
+-------------------------------
+
+1. dlc to check the legality
+2. btest to test harness to check correctness.
+3. BDD checker to fomally verify function. 
