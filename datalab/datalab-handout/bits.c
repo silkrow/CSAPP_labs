@@ -228,7 +228,11 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+	/* neg_pos pos_neg handles the situation of overflow, and compare is just the regular compare which should be used when x y have common symbol. */
+	int neg_pos = !!((x>>31)&(~(y>>31)));
+	int pos_neg = !((~(x>>31))&(y>>31));
+	int compare = !(((~x)+1+y)>>31);
+  	return neg_pos|(pos_neg&compare);
 }
 //4
 /* 
@@ -240,7 +244,13 @@ int isLessOrEqual(int x, int y) {
  *   Rating: 4 
  */
 int logicalNeg(int x) {
-  return 2;
+	/* Not sure if there're any other ways. */
+	int a = (x>>16)|x;
+	a = (a>>8)|a;
+	a = (a>>4)|a;
+	a = (a>>2)|a;
+	a = (a>>1)|a;
+	return (~a)&1;
 }
 /* howManyBits - return the minimum number of bits required to represent x in
  *             two's complement
