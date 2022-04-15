@@ -177,7 +177,7 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-	/* Straightfoward. */
+	/* Straightforward. */
 	int ans = x&(x>>8)&(x>>16)&(x>>24);
 	ans = (ans>>5)&(ans>>1);
 	return (ans>>2)&ans&1;
@@ -190,7 +190,8 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+	/* Straightforward. Common sense. */
+  	return (~x)+1;
 }
 //3
 /* 
@@ -203,7 +204,8 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+	/* Use the & result of two sums. Sums indicate the result of comparisons. */
+  	return !!((((0x2F)+(~x)+1)&((~(0x3A))+x+1))>>31);
 }
 /* 
  * conditional - same as x ? y : z 
@@ -213,7 +215,10 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+	/* Straightforward. Two variables are used to avoid warning on ~(bool) behavior. */
+	int x_bool = !!x;
+	int x_bar_bool = !x;
+	return (((~x_bool)+1)&y)|(((~x_bar_bool)+1)&z);
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 

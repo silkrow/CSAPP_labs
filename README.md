@@ -5,7 +5,7 @@ Sources from http://csapp.cs.cmu.edu/3e/labs.html
 
 I seek my Chinese version of CSAPP for help. 
 
-Issue encountered:
+Issues encountered:
 
 1. Compiling error 
 
