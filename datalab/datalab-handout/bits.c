@@ -265,7 +265,13 @@ int logicalNeg(int x) {
  *  Rating: 4
  */
 int howManyBits(int x) {
-  return 0;
+
+	/* I believe this is a must-done step. */
+	int a = (x>>1)^x; 
+	/* The following work should find the first place 1 occuring in variable a(from left to right). */
+	
+
+  	return a;
 }
 //float
 /* 
