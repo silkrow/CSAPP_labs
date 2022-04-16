@@ -265,13 +265,49 @@ int logicalNeg(int x) {
  *  Rating: 4
  */
 int howManyBits(int x) {
+	/* I'm sure there're better ways to solve this problem, but the following 71 ops version has took me a whole day already orz... */
+	int zo = (x>>1)^x;  /* I believe this is a must-done step. */
+	int hex;
+	int ans;
+	int num_o = 0;
+	int neg_num_o;
+	int grt_than_16;
 
-	/* I believe this is a must-done step. */
-	int a = (x>>1)^x; 
 	/* The following work should find the first place 1 occuring in variable a(from left to right). */
-	
+	zo = (zo>>1)|zo;
+	zo = (zo>>2)|zo;
+	zo = (zo>>4)|zo;
+	zo = (zo>>8)|zo;
+	zo = (zo>>16)|zo;
+	hex = (zo>>16)^zo;
+	num_o += (hex>>15)&1;
+	num_o += (hex>>14)&1;
+	num_o += (hex>>13)&1;
+	num_o += (hex>>12)&1;
+	num_o += (hex>>11)&1;
+	num_o += (hex>>10)&1;
+	num_o += (hex>>9)&1;
+	num_o += (hex>>8)&1;
+	num_o += (hex>>7)&1;
+	num_o += (hex>>6)&1;
+	num_o += (hex>>5)&1;
+	num_o += (hex>>4)&1;
+	num_o += (hex>>3)&1;
+	num_o += (hex>>2)&1;
+	num_o += (hex>>1)&1;
+	num_o += hex&1;
 
-  	return a;
+	/* hex is a 16-bit long 'window' that presents a part of zo(which is too long). */
+
+	/* num_o counts the number of ones in hex. */
+	neg_num_o = (~num_o)+1;
+	grt_than_16 = ((hex<<16)>>31); // 0^0
+	/* 65 operations up to now. */
+
+	ans = 1+(grt_than_16&(32+neg_num_o))+((~grt_than_16)&(num_o));	
+	/* 71 in total. */
+
+  	return ans;
 }
 //float
 /* 
